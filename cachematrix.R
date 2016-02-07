@@ -11,17 +11,17 @@ makeCacheMatrix <- function(x = numeric()) {
         
        
         setMatrix <- function(newValue) {
-                x <<- newValue
-                cache <<- NULL
+                x <<- newValue #it is a new matrix so you have to evaluate the inverse
+                cache <<- NULL #not cached yet
         }
         getMatrix <- function() {
                 x
         }
         cacheInverse <- function(solve) {
-                cache <<- solve #solve the inverse of the matrix
+                cache <<- solve  #add the matrix to the cache
         }
         getInverse <- function() {
-                cache
+                cache  #read the matrix from memory
         }
         
         list(setMatrix = setMatrix, getMatrix = getMatrix, cacheInverse = cacheInverse, getInverse = getInverse)
