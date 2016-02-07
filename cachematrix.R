@@ -1,10 +1,9 @@
 ## Put comments here that give an overall description of what your
 ## functions do
-## makeCacheMatrix stores a matrix X in memory
-## cacheSolve shows the inverse of a matrix if is in memory or computes the inverse and then shows the inverse
+
 
 ## Write a short comment describing this function
-## makeCacheMatrix uses scoping rules and stores matrices in memory
+
 
 makeCacheMatrix <- function(X = matrix()) {
 inverse <- NULL
@@ -19,28 +18,27 @@ list(set=set,get=get,setinverse=setinverse,getinverse=getinverse)
 }
 
 ## Write a short comment describing this function
-## cacheSolve uses corpcor, a library that avoids determinants and uses orthogonal descomposition
-## note: this function will try to load corpcor library and if it's not installed will try to install the library
+
 
 cacheSolve <- function(X, ...) 
 {
 if(require("corpcor")){
-	print("corpcor is loaded correctly")
+	print("Corpcor instalado")
 	} else {
-		print("trying to install corpcor")
+		print("ntentando instalar corpcor")
 		install.packages("corpcor")
 		if(require(corpcor)){
-			print("corpcor installed and loaded")
+			print("corpcor instalado y cargado")
 			} else {
-			stop("could not install corpcor")
+			stop("mo pudo intalarse corpcor")
 			}
 		}
 inverse <- X$getinverse()
 if(!is.null(inverse)){
-	message("matrix is in memory")
+	message("matriz está en memoria")
 	return(inverse)
 	}
-message("inverse is not in memory so the inverse (if exist) is gonna be computed")
+message("la inversa no está en memoria entonces va a ser calculada")
 data <- X$get()
 inverse <- pseudoinverse(data, ...)
 X$setinverse(inverse)
